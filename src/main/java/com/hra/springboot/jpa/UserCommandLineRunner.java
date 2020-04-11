@@ -15,10 +15,10 @@ public class UserCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String...args) {
 
-        repository.save(new User("Ranga", "Admin"));
-        repository.save(new User("Ravi", "User"));
-        repository.save(new User("Satish", "Admin"));
-        repository.save(new User("Raghu", "User"));
+        repository.save(new User("hra", "Admin"));
+        repository.save(new User("yaas", "User"));
+        repository.save(new User("aram", "Admin"));
+        repository.save(new User("ma", "User"));
 
         for (User user : repository.findAll()) {
             log.info(user.toString());

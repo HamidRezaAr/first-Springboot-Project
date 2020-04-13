@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.hra.springboot.model.Question;
 import com.hra.springboot.service.SurveyService;
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = SurveyController.class, secure = false)
+@WebMvcTest(controllers = SurveyController.class)
 public class SurveyControllerTest {
 
     @Autowired

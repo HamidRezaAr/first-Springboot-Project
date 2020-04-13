@@ -1,31 +1,27 @@
 package com.hra.springboot.controller;
 
 
-import static org.junit.Assert.assertTrue;
-
-import java.nio.charset.Charset;
-
-import java.util.Arrays;
-import java.util.List;
-
+import com.hra.springboot.Application;
+import com.hra.springboot.model.Question;
+import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
-import org.springframework.boot.context.embedded.LocalServerPort;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.hra.springboot.Application;
-import com.hra.springboot.model.Question;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class,
@@ -47,7 +43,7 @@ public class SurveyControllerIT {
     }
 
 	@Test
-	public void testRetrieveSurveyQuestion() {
+	public void testRetrieveSurveyQuestion() throws JSONException {
 
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
@@ -56,6 +52,7 @@ public class SurveyControllerIT {
                 HttpMethod.GET, entity, String.class);
 
 		String expected = "{id:Question1,description:Largest Country in the World,correctAnswer:Russia}";
+
 
 		JSONAssert.assertEquals(expected, response.getBody(), false);
 	}
